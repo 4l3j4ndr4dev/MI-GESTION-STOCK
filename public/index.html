@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Stock - Trabajo Integrador</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏪 Gestión de Stock</h1>
+            <p>Trabajo Práctico Integrador - API RESTful</p>
+        </header>
+
+        <!-- Sección de Autenticación -->
+        <div class="auth-section" id="authSection">
+            <h2 class="section-title">Iniciar Sesión / Registrarse</h2>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="usuario@ejemplo.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" placeholder="Mínimo 6 caracteres">
+            </div>
+            
+            <div class="button-group">
+                <button onclick="login()">Iniciar Sesión</button>
+                <button onclick="register()">Registrarse</button>
+            </div>
+            
+            <div id="authMessage" class="message"></div>
+        </div>
+
+        <!-- Sección de Productos (visible después del login) -->
+        <div class="products-section hidden" id="productsSection">
+            <div class="user-info">
+                <div>
+                    <strong>Usuario:</strong> <span id="userEmail"></span>
+                </div>
+                <button onclick="logout()" class="logout-btn">Cerrar Sesión</button>
+            </div>
+
+            <h2 class="section-title">Gestión de Productos</h2>
+            
+            <!-- Formulario para agregar/editar producto -->
+            <div class="product-form-container">
+                <h3 id="formTitle">Agregar Nuevo Producto</h3>
+                
+                <div class="form-group">
+                    <label for="productName">Nombre:</label>
+                    <input type="text" id="productName" placeholder="Nombre del producto" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="productDescription">Descripción:</label>
+                    <textarea id="productDescription" placeholder="Descripción del producto" rows="3"></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productPrice">Precio:</label>
+                        <input type="number" id="productPrice" placeholder="0.00" step="0.01" min="0" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productStock">Stock:</label>
+                        <input type="number" id="productStock" placeholder="0" min="0" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="productCategory">Categoría:</label>
+                    <select id="productCategory">
+                        <option value="tecnología">Tecnología</option>
+                        <option value="hogar">Hogar</option>
+                        <option value="ropa">Ropa</option>
+                        <option value="deportes">Deportes</option>
+                        <option value="otros">Otros</option>
+                    </select>
+                </div>
+                
+                <div class="button-group">
+                    <button onclick="saveProduct()" id="saveButton">Guardar Producto</button>
+                    <button onclick="clearForm()" class="cancel-btn">Cancelar</button>
+                </div>
+            </div>
+
+            <!-- Barra de búsqueda -->
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Buscar productos por nombre, descripción o categoría..." onkeyup="searchProducts()">
+            </div>
+
+            <!-- Contador de productos -->
+            <div class="products-count">
+                <span id="productsCount">0 productos encontrados</span>
+            </div>
+
+            <!-- Lista de productos -->
+            <div id="productsList">
+                <div class="products-grid" id="productsGrid">
+                    <!-- Los productos se cargarán aquí dinámicamente -->
+                </div>
+            </div>
+
+            <div id="productsMessage" class="message"></div>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>
