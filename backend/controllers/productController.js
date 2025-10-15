@@ -1,4 +1,4 @@
-const Product = require('../models/Product');
+const Product = require('../models/product');
 
 // GET /items - Lista elementos (el case insensitive ya lo hace el middleware)
 const getAllProducts = async (req, res) => {
